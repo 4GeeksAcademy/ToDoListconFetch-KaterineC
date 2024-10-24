@@ -1,7 +1,31 @@
+body{
+  background-color: pink ;
+}
+
 li:hover > * {
   visibility: visible;
 }
 
 .icono-oculto{
 visibility: hidden;
+}
+
+.background{
+  background-color: rgba(255, 255, 255, 0.39);
+  width: 350px;
+  border-radius: 15px;
+  margin: 0px 15px 0px 15px;
+  padding-bottom: 15px;
+}
+
+input{
+  width: 300px !important;
+  margin-left: -65px !important;
+}
+
+.title{
+  font-size: 60px;
+  color: white;
+  font-family:fantasy;
+  margin-top: 20px ;
 }

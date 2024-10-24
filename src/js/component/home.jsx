@@ -1,53 +1,38 @@
 import React, {useState} from "react";
 
+import Monday from "./monday.jsx"
+import Friday from "./friday.jsx";
+import Tuesday from "./tuesday.jsx";
+import Wednesday from "./wednesday.jsx";
+import Thursday from "./thursday.jsx";
+import Saturday from "./saturday.jsx";
+import Sunday from "./sunday.jsx";
+import Notes from "./notes.jsx";
+import Title from "./title.jsx"
+
+
 
 
 //create your first component
 const Home = () => {
-
-	let [tareas, setTareas] = useState(["Bañarse", "Comer", "Cocinar", "Leer sobre React"])
-	let [tareaNueva, setTareaNueva] = useState("")
-
-	return (
-		<div className="container mt-5">
-
-			<h1 className="text-center mt-5">Todos</h1>
-			<div className="col-6 mx-auto">
-				<input type="text" className="form-control" placeholder="What's needs to be done?"
-					value={tareaNueva} onChange={(event) =>{
-						setTareaNueva(event.target.value)
-					}}
-
-					onKeyUp = {(event) => {
-						if(event.key == "Enter"){
-							setTareas([...tareas,tareaNueva ])
-							setTareaNueva("")
-						}
-
-					}}
-				/>
-			
-				<ul className="">
-					{tareas.map((items, index)=> {
-						return (
-							<li key={index}>
-								{items}<i className="fa-solid fa-trash icono-oculto" onClick={()=>{
-							const aux = tareas.filter((_task, ind) => {
-										return (ind != index)
-									})
-									setTareas(aux)
-								}}
-
-								></i>
-							</li>
-						)
-						})}
-
-				</ul>
-						<span>{tareas.length} Items left</span>
+		return <>	
+		<Title/>
+		<div className="d-flex flex-wrap justify-content-center">
+			<div className="d-flex flex-wrap justify-content-center">
+				<Monday/>
+				<Tuesday/>
+				<Wednesday/>
+				<Thursday/>
 			</div>
+			<div className="d-flex flex-wrap justify-content-center">
+				<Friday/>
+				<Saturday/>
+				<Sunday/>
+				<Notes/>
+			</div>
+			
 		</div>
-	);
+		</>
 };
 
 export default Home;
