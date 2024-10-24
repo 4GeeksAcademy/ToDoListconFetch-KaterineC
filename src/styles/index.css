@@ -16,6 +16,7 @@ visibility: hidden;
   border-radius: 15px;
   margin: 0px 15px 0px 15px;
   padding-bottom: 15px;
+  border: 1px solid white;
 }
 
 input{
@@ -28,4 +29,6 @@ input{
   color: white;
   font-family:fantasy;
   margin-top: 20px ;
+
 }
+
