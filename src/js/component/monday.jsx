@@ -24,23 +24,24 @@ const Monday = () => {
 					}}
 				/>
 			
-				<ul className="">
-					{tareas.map((items, index)=> {
-						return (
-							<li key={index}>
-								{items}<i className="fa-solid fa-trash icono-oculto" onClick={()=>{
-							const aux = tareas.filter((_task, ind) => {
-										return (ind != index)
-									})
-									setTareas(aux)
-								}}
-
-								></i>
-							</li>
-						)
-						})}
-
-				</ul>
+			<ul>
+          {tareas.length === 0 ? (
+            <li>No hay tareas, añadir tareas</li>
+          ) : (
+            tareas.map((item, index) => (
+              <li key={index}>
+                {item}
+                <i
+                  className="fa-solid fa-trash icono-oculto"
+                  onClick={() => {
+                    const aux = tareas.filter((_task, ind) => ind !== index);
+                    setTareas(aux);
+                  }}
+                ></i>
+              </li>
+            ))
+          )}
+        </ul>
 						<span>{tareas.length} Items left</span>
 			</div>
 		</div>
