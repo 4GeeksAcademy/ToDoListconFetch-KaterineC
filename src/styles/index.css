@@ -10,18 +10,12 @@ li:hover > * {
 visibility: hidden;
 }
 
-.background{
-  background-color: rgba(255, 255, 255, 0.39);
-  width: 350px;
-  border-radius: 15px;
-  margin: 0px 15px 0px 15px;
-  padding-bottom: 15px;
-  border: 1px solid white;
-}
-
-input{
-  width: 300px !important;
-  margin-left: -65px !important;
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
 }
 
 .title{

@@ -8,8 +8,8 @@ const Monday = () => {
 	return (
 		<div className="container my-5 background">
 
-			<h1 className="text-center mt-5">Monday</h1>
-			<div className="col-6 mx-auto">
+			<h1 className="text-center">Tasks</h1>
+			<div>
 				<input type="text" className="form-control" placeholder="What's needs to be done?"
 					value={tareaNueva} onChange={(event) =>{
 						setTareaNueva(event.target.value)
