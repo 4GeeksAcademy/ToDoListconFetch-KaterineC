@@ -10,9 +10,11 @@ import Notes from "./notes.jsx"
 //create your first component
 const Home = () => {
 		return ( <>
-		<Title/>		
+		<Title/>
+		<div className="d-flex">		
 		<Monday/>
-		<Notes/>	
+		<Notes/>
+		</div>	
 		</>
 )};
 

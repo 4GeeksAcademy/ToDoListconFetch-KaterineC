@@ -6,7 +6,7 @@ const Monday = () => {
 	let [tareaNueva, setTareaNueva] = useState("")
 
 	return (
-		<div className="container my-5 background">
+		<div className="container my-5 background col-4">
 
 			<h1 className="text-center">Notes</h1>
 			<div>
