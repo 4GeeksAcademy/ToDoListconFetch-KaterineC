@@ -1,123 +1,66 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
+
 
 const Monday = () => {
-	const [tarea, setTarea] = useState("")
-	const [lista, setLista] = useState([])
 
-	async function agregarTareas(evento) {
-		evento.preventDefault()
-		if (tarea != "") {
-			guardarTareas()
-			setTarea("")
-		} else {
-			alert("Ingresar Tarea")
-		}
-		if (evento.key === "Enter") {
-			guardarTareas()
-			setTarea("")
-		}
-	}
+	let [tareas, setTareas] = useState("")
+	let [tareaNueva, setTareaNueva] = useState([])
 
-	const guardarTareas = async () => {
-		try {
-			const url = "https://playground.4geeks.com/todo/todos/nati"
-			const resp = await fetch(url, {
-				method: "POST",
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					label: tarea,
-					is_done: false
-				})
-			})
-			if (resp.ok) {
-				cargarTareas()
-				return true
-			}
-		} catch (error) {
-			console.log(error)
-			return false
-		}
-	}
-	const cargarTareas = async () => {
-		try {
-			const url = "https://playground.4geeks.com/todo/users/nati"
-			const resp = await fetch(url)
-			if (resp.status == 404) {
-				crearUsuario()
-				return
-			}
+
+
+	useEffect( () =>{
+		const cargarTareas = async () =>{
+			const url= "https://playground.4geeks.com/todo/users/drastone"
+			const resp = await fetch(url) 
 			const data = await resp.json()
-			setLista(data.todos)
-			return true
-		} catch (error) {
-			console.error(error)
-			return false
+			
+			setTareas(data.todos)
 		}
-	}
-
-	const crearUsuario = async () => {
-		try {
-			const resp = await fetch("https://playground.4geeks.com/todo/users/nati", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" }
-			})
-			if (resp.status == 201) {
-				cargarTareas()
-			}
-		} catch (error) {
-			console.log(error)
-			return false
-		}
-	}
-
-	const borrar = async (id) => {
-
-		try {
-			const resp = await fetch("https://playground.4geeks.com/todo/todos/" + id, {
-				method: "DELETE",
-				headers: { "Content-Type": "application/json" }
-			})
-		
-			if (resp.status == 204) {
-				cargarTareas()
-				return true
-			}
-		} catch (error) {
-			console.log(error)
-			return false
-		}
-	}
-
-	useEffect(() => {
 		cargarTareas()
-	}, [])
+	},[])
+
+
 
 	return (
-		<div className="container text-center ">
-			<h1 className="text-center mt-5 ">Todos</h1>
-			<form className="row">
-				<div className="col-12 ">
-					<input type="text "
+		<div className="container my-5 background col-4">
+
+			<h1 className="text-center">Tasks</h1>
+			<div>
+				<input type="text" className="form-control" placeholder="What's needs to be done?"
+					value={tareaNueva} onChange={(event) =>{
+						setTareaNueva(event.target.value)
+					}}
+
+					onKeyUp = {(event) => {
+
+						if(event.key == "Enter"){
+							setTareas([...tareas,tareaNueva ])
+							setTareaNueva("")
+						}
+
+					}}
+				/>
 			
-						className="form-control" placeholder="Nueva Tarea" value={tarea} onChange={(evento) => setTarea(evento.target.value)} />
-				</div>
-				<div className="col-12 mt-2">
-					<button type="submit" onClick={(evento) => agregarTareas(evento)} className="btn btn-success mb-3">Agregar Tarea</button>
-				</div>
-			</form>
-			<ul className="list-group border-success">
-				{lista.map((item, index) => (
-					<li className="list-group-item d-flex justify-content-between" key={index}>
-						{item.label}
-						<i onClick={() => borrar(item.id)} className="m-1 fa-solid fa-trash icono-oculto"></i>
-					</li>
-				))}
-			</ul>
-			<span>
-				{(lista.length == 0) ? "No hay Tareas , Agregar Una " : ""}
-			</span>
-			<p></p>
-			<span>{lista.length} Items Left</span>
+			<ul>
+          {tareas.length === 0 ? (
+            <li>No hay tareas, añadir tareas</li>
+          ) : (
+            tareas.map((item, index) => (
+              <li key={index}>
+                {item.label}
+                <i
+                  className="fa-solid fa-trash icono-oculto"
+                  onClick={() => {
+                    const aux = tareas.filter((_task, ind) => ind !== index);
+                    setTareas(aux);
+                  }}
+                ></i>
+              </li>
+            ))
+          )}
+        </ul>
+						<span>{tareas.length} Items left</span>
+			</div>
 		</div>
 	);
 };
