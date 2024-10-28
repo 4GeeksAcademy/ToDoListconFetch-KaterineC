@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 
-import Monday from "./monday.jsx"
+import Monday from "./todos.jsx"
 import Title from "./title.jsx"
-import Notes from "./notes.jsx"
+
 
 
 
@@ -11,10 +11,9 @@ import Notes from "./notes.jsx"
 const Home = () => {
 		return ( <>
 		<Title/>
-		<div className="d-flex">		
+		
 		<Monday/>
-		<Notes/>
-		</div>	
+	
 		</>
 )};
 
