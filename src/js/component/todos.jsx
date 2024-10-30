@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 
 const Monday = () => {
 
-	let [tareas, setTareas] = useState("")
+	let [tareas, setTareas] = useState([])
 	let [tareaNueva, setTareaNueva] = useState([])
 
 
@@ -12,11 +12,11 @@ const Monday = () => {
 		const cargarTareas = async () =>{
 			const url= "https://playground.4geeks.com/todo/users/drastone"
 			const resp = await fetch(url) 
-			const data = await resp.json()
-			
+			const data = await resp.json()			
+		
 			setTareas(data.todos)
 		}
-		cargarTareas()
+		cargarTareas();
 	},[])
 
 
