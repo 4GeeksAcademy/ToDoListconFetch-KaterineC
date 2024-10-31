@@ -35,7 +35,7 @@ const borrar = async (id) => {
 				method: "DELETE",
 				headers: { "Content-Type": "application/json" }
 			})
-			// console.log(resp.status)
+
 			if (resp.status == 204) {
 				cargarTareas()
 				return true
