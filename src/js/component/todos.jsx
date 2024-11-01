@@ -120,9 +120,12 @@ const Monday = () => {
         ))
         )}
         </ul>
+        <div className="d-flex justify-content-between">
         <span>{tareas.length} Items left</span>
+        <button className="btn btn-light" type="button" onClick= { () => deleteUser()}>Eliminar Todo</button>
+        </div>
       </div>
-      <button type="button" onClick= { () => deleteUser()}>Eliminar Todo</button>
+      
     </div>
   );
 };
